@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+</head>
+<body>
+  <h1>Browse List of Asteroids</h1>
+
+  <a href="/asteroid/add">Add</a>
+
+  <table>
+    <tr>
+      <th>NAME</th>
+      <th>MASS</th>
+      <th>ACTIONS</th>
+    </tr>
+  <% for (let prop in asteroidList) { %>
+    <tr>
+      <td><a href="/asteroid/<%= asteroidList[prop].name %>"><%= asteroidList[prop].name %></a></td>
+      <td><%= asteroidList[prop].mass %></td>
+      <td><a href="/asteroid/<%= asteroidList[prop].name %>/delete">DELETE</a>
+        <a href="/asteroid/<%= asteroidList[prop].name %>/edit">EDIT</a>
+      </td>
+    </tr>
+  <% } %>
+  </table>
+</body>
+</html>

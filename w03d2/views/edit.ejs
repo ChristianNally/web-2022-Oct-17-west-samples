@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Asteroid</title>
+</head>
+<body>
+
+  <form action="/asteroid/:name/edit" method="POST">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" value="<%= a.name %>" />
+    <label for="mass">Mass</label>
+    <input type="text" id="mass" name="mass" value="<%= a.mass %>" />
+    <label for="r1">R1</label>
+    <input type="text" id="r1" name="r1" value="<%= a.r1 %>" />
+    <label for="r2">R2</label>
+    <input type="text" id="r2" name="r2" value="<%= a.r2 %>" />
+    <input type="submit" value="Update" name="submit" />
+  </form>
+
+</body>
+</html>
