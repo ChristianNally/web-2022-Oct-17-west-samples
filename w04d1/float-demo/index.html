@@ -5,38 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 <style>
+
+* {
+  border: 1px solid black;
+}
+
 html {
-  border: 5px dashed red;
+  /* border: 5px dashed red; */
 }
 
 .container {
-  background-color: grey;  
+  /* background-color: grey;   */
 }
 
 .smiley {
-  font-size: 4rem;
-  border: 1px dashed black;
-  width: 65px;
+  font-size: 5rem;
+  /* border: 1px dashed black; */
+  /* width: 65px; */
 /*   width: 100%; */
-  float: left;
+  /* float: left; */
 }
 
 .smiley-1 {
-  float: right;
+  /* float: right; */
 }
 
 .clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
+  /* content: ""; */
+  /* clear: both; */
+  /* display: table; */
 }
 </style>
 </head>
 <body>
   <main class="container clearfix">
     <div class="smiley smiley-1">&#128546</div>
-    <div class="smiley smiley-2">&#9785</div>
-    <div class="smiley smiley-3">&#128553</div>
+    <p class="smiley smiley-2">&#9785</p>
+    <p class="smiley smiley-3">&#128553</p>
   </main>    
 </body>
 </html>

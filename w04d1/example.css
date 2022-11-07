@@ -1,0 +1,18 @@
+* {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+h3 {
+  color: rgb(79, 79, 225);
+  font-size: 140%;
+  margin: 50px;
+}
+
+body {
+  background-color: black;
+}
+
+p {
+  color: lightgreen;
+}
