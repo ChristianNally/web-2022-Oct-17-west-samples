@@ -1,8 +1,8 @@
 # W03D03 - HTTP Cookies & User Authentication
 
 ### To Do
-- [] HTTP and cookies
-- [] Register user with email and password
+- [x] HTTP and cookies
+- [x] Register user with email and password
 
 ### HTTP and Cookies
 * **HTTP** is a stateless protocol which means that the participants are not required to remember any previous communication

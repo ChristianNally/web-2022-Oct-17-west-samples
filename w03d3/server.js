@@ -2,9 +2,9 @@ const express = require("express");
 const PORT = 8082;
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const morgan = require("morgan");
 
 const app = express();
-
 app.set("view engine","ejs");
 
 
@@ -17,7 +17,7 @@ const users = {'nally': "qwerty"};
 //
 // Middleware
 //
-
+app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(cookieParser());
 
@@ -26,6 +26,7 @@ app.use(cookieParser());
 //
 
 app.get('/',(req,res)=>{
+  console.log('req:',req);
   res.render('homepage');
 });
 
@@ -51,7 +52,7 @@ app.post("/login",(req,res)=>{
 
 // Registration Routes
 
-app.get('/register',(req,res)=>{
+app.get("/register",(req,res)=>{
   res.render("register");
 });
 
@@ -61,19 +62,23 @@ app.post("/register",(req,res)=>{
   const newName = req.body.username;
   const newPassword = req.body.password;
 
-  users[newName] = newPassword;
-  res.cookie("user",newName);
+  users[newName] = newPassword; 
+  console.log("users:", users);
 
+  res.cookie("user",newName);
   res.redirect("/profile");
 });
 
 
 // Profile Page
-app.get('/profile',(req,res)=>{
+app.get("/profile",(req,res)=>{
   console.log("req.cookies:",req.cookies);
   if (users[req.cookies.user]){
-    const templateVars = { password: users[req.cookies.user] };
-    res.render('profile', templateVars);
+    const templateVars = {
+      user: req.cookies.user,
+      password: users[req.cookies.user] 
+    };
+    res.render("profile", templateVars);
   } else {
     res.redirect('/login');
   }
