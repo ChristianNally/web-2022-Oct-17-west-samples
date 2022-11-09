@@ -48,9 +48,9 @@ $(document).ready(function () {
   
     // could grab a form input here for a filter on the data
     let url = '';
-    if (false){ // toggle
+    if (true){ // toggle
       // option 1
-      url = "/moretime";
+      url = "https://dog.ceo/api/breeds/image/random";
     } else {
       // option 2 for Canadian Covid case statistics
       url = "https://api.apify.com/v2/key-value-stores/fabbocwKrtxSDf96h/records/LATEST?disableRedirect=true";
@@ -65,6 +65,7 @@ $(document).ready(function () {
 
       // $("#display").append(debugShowElements(result,null));
     //  $("#display").append(debugShowElements(result,"infectedByRegion"));
+      console.log('result', result);
       $("#display").html(reallyShowElements(result));
     });
 

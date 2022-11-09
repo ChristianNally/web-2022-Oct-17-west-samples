@@ -1,57 +1,35 @@
-$(document).ready(function () {
+$(document).ready(function(){
 
-  function resultTurnedIntoDOM(data){
-    const $elementsForDisplay = $('<div class="canada-covid-data"></div>');
-    const $infected = $('<div class="infected">Infected: ' + data.infected + '</div>');
-    $elementsForDisplay.append($infected);
-
-    const setOfRegions = data.infectedByRegion;
-    const $regions = $(`
-    <table class="regions">
-      <tr>
-        <th>Region</th>
-        <th>Infected</th>
-        <th>Deceased</th>
-      </tr>
-    </table>
-    `);
-
-    jQuery.each(setOfRegions, (key) => {
-      $regions.append(`
-      <tr>
-      <td>${setOfRegions[key].region}</td>
-      <td>${setOfRegions[key].infectedCount}</td>
-      <td>${setOfRegions[key].deceasedCount}</td>
-      </tr>
-      `);
-    });
-
-    $regions.appendTo($elementsForDisplay);
-    // Same As: $elementsForDisplay.append($regions);
-
-    return $elementsForDisplay;
+  function convertMemesToHTML(memes){
+    let output = `<table><tr><th>Name</th><th>Thumbnail</th></tr>`;
+    for (let meme of memes){
+      output = output + `<tr><td><a href="${meme.url}" target="_blank">${meme.name}</a></td><td><img width="200px" src="${meme.url}"/></td></tr>`;
+    }
+    output = output + `</table>`;
+    return output;
   }
 
-  $("form").on("submit", function (event) {
+  $('#data-getter').on('submit', function(event){
+    // console.log('event', event);
     event.preventDefault();
-    console.log("the default event result has been prevented");
-    let url = "https://api.apify.com/v2/key-value-stores/fabbocwKrtxSDf96h/records/LATEST?disableRedirect=true";
+    // alert('Monkey Fuzz!');
 
     $.ajax({
-      url: url,
-      method: "GET", // POST, PUT, DELETE, ... 
+      url: 'https://api.imgflip.com/get_memes',
+      method: 'GET'
     })
-    .then((result) => {
-      console.log('ajax callback called');
-      console.log('result:',result);
-      $('#display').html(resultTurnedIntoDOM(result));
-      history.pushState(null,"Stats Retrieved",'/#data');
+    .then(function(result){
+      console.log('result.data.memes[0]', result.data.memes[0]);
+
+      const insertThis = convertMemesToHTML(result.data.memes);
+      $('#display').html(insertThis);
+
     })
-    .catch(err => {
-      console.log('ajax error caught');
-      console.log(err); // related error
+    .catch(function(error){
+      console.log('error', error);
     });
 
   });
 
 });
+
