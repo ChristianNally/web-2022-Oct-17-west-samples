@@ -33,9 +33,15 @@ Today you will learn how to...
 
 createdb [connection-option...] [option...] [dbname [description]]
 
+Client: psql [option...] [dbname [username]]
+
 ## Create a Table (columns)
 
-psql [option...] [dbname [username]]
+CREATE TABLE grocery_item (
+	id serial PRIMARY KEY,
+	description VARCHAR ( 50 ) UNIQUE NOT NULL,
+	created_on TIMESTAMP NOT NULL
+);
 
 ## (CREATE) Insert Rows into a Table 
 
@@ -124,12 +130,13 @@ WHERE type = 'performance';
 
 SELECT question, answer
 FROM objectives
-WHERE type = 'performance' AND sort < 5;
+WHERE type = 'performance' AND sort < 4;
 
 ## JOIN
-SELECT day_description, question, answer
+SELECT day_description, question
 FROM objectives
-JOIN days ON objectives.day_id = days.id;
+JOIN days ON objectives.day_id = days.id
+WHERE days.id = 20;
 
 ## having (... because you cannot use WHERE on an aggregate function)
 
@@ -137,3 +144,6 @@ SELECT count(day_id)
 FROM objectives 
 GROUP BY day_id 
 HAVING count(day_id) > 3;
+
+# Basic SQL Server Dev Ops
+
